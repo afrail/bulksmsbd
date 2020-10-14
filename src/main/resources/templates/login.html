@@ -30,6 +30,10 @@
                     <td><label for="emailId">Email</label></td>  
                     <td><input th:field="*{email}" type="text" name="email"></input></td>  
                 </tr> 
+                 <tr>  
+                    <td><label for="password">Password</label></td>  
+                    <td><input th:field="*{password}" type="password" name="password"></input></td>  
+                </tr> 
                 <tr>  
                     <td><input type="reset" value="Clear"/></td>  
                     <td><input type="submit" value="Submit"></input></td>  
@@ -38,7 +42,7 @@
         </form>  
         </div>
         <div>
-        <form action="#" th:action="@{/login}" th:object="${user}" method="post">  
+        <form th:action="@{/login}" th:object="${user}" method="post">  
             <table> 
                 <tr>  
                     <td><label for="userName">User Name</label></td>  

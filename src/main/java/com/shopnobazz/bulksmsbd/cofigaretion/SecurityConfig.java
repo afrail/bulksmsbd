@@ -56,8 +56,8 @@ private BCryptPasswordEncoder passwordEncoder() {
           .antMatchers("/newUser").permitAll()
           .antMatchers("/forgetPassword").permitAll()
           
-          .antMatchers("/home/**","/adminhome/**","/book/**","/myAdmin").hasAuthority("ROLE_ADMIN")
-          .antMatchers("/home/**","/check/**","/search/**","/shoppingCart/**").hasAuthority("ROLE_USER")
+          .antMatchers("/home/**","/adminhome/**","/package/**","/myAdmin").hasAuthority("ROLE_USER")
+          .antMatchers("/home/**","/check/**","/package/**","/shoppingCart/**").hasAuthority("ROLE_USER")
           .anyRequest()
           .authenticated();
 
