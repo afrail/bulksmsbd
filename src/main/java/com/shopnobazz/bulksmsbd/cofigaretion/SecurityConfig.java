@@ -28,7 +28,10 @@ private BCryptPasswordEncoder passwordEncoder() {
 	 private static final String[] PUBLIC_MATCHERS = {
 	            "/css/**",
 	            "/js/**",
-	            "/image/**",
+	            "/images/**",
+	            "/dist/**",
+	            "/pages/**",
+	            "/plugins/**",
 	            "/home/**",
 	            "/newUser",
 	            "/forgetPassword",
@@ -45,6 +48,7 @@ private BCryptPasswordEncoder passwordEncoder() {
 	            
 	            
 	            
+	            
 	    };
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -56,8 +60,8 @@ private BCryptPasswordEncoder passwordEncoder() {
           .antMatchers("/newUser").permitAll()
           .antMatchers("/forgetPassword").permitAll()
           
-          .antMatchers("/home/**","/adminhome/**","/package/**","/myAdmin").hasAuthority("ROLE_USER")
-          .antMatchers("/home/**","/check/**","/package/**","/shoppingCart/**").hasAuthority("ROLE_USER")
+          .antMatchers("/home/**","/adminhome/**","/package/**","/myAdmin").hasAuthority("ROLE_Admin")
+          .antMatchers("/user/**","/package/**").hasAuthority("ROLE_USER")
           .anyRequest()
           .authenticated();
 
