@@ -2,6 +2,7 @@ package com.shopnobazz.bulksmsbd.domain;
  
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,6 +38,10 @@ public class User implements UserDetails{
 	private String email;
 	private String phone;
 	private boolean enabled = false;
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
+	private Wallet wallet;
+	@OneToMany(mappedBy = "user",cascade =CascadeType.ALL )
+	private List<ParchesHistory> parchesHistory;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
@@ -44,7 +50,7 @@ public class User implements UserDetails{
 	}
 	
 	public User(String username, String password, String firstName, String lastName, String email, String phone
-			) {
+			, List<ParchesHistory> parchesHistory) {
 	
 		this.username = username;
 		this.password = password;
@@ -52,12 +58,14 @@ public class User implements UserDetails{
 		this.lastName = lastName;
 		this.email = email;
 		this.phone = phone;
+		this.parchesHistory=parchesHistory;
 		
 	}
 
 	public Long getId() {
 		return id;
 	}
+	
 
 	public void setId(Long id) {
 		this.id = id;
@@ -121,6 +129,23 @@ public class User implements UserDetails{
 
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
+	}
+	
+
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
+	}
+
+	public List<ParchesHistory> getParchesHistory() {
+		return parchesHistory;
+	}
+
+	public void setParchesHistory(List<ParchesHistory> parchesHistory) {
+		this.parchesHistory = parchesHistory;
 	}
 
 	@Override
