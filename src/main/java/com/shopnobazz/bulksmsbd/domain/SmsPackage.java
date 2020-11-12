@@ -20,8 +20,8 @@ public class SmsPackage {
 	@Column(name = "id",nullable = false,updatable = false)
  private long id;
  private String packageName;
- private String price;
- private String quantity;
+ private double price;
+ private int quantity;
  private String packageType;
  private String validationDate;
  @OneToMany(mappedBy = "smsPackage")
@@ -30,7 +30,7 @@ public class SmsPackage {
 public SmsPackage() {
 
 }
-public SmsPackage(long id, String packageName, String price, String quantity, String validationDate,String packageType,List<PackageParchesHistory> packageParchesHistory) {
+public SmsPackage(long id, String packageName, double price, int quantity, String validationDate,String packageType,List<PackageParchesHistory> packageParchesHistory) {
 	this.id = id;
 	this.packageName = packageName;
 	this.price = price;
@@ -65,16 +65,16 @@ public String getPackageName() {
 public void setPackageName(String packageName) {
 	this.packageName = packageName;
 }
-public String getPrice() {
+public double getPrice() {
 	return price;
 }
-public void setPrice(String price) {
+public void setPrice(double price) {
 	this.price = price;
 }
-public String getQuantity() {
+public int getQuantity() {
 	return quantity;
 }
-public void setQuantity(String quantity) {
+public void setQuantity(int quantity) {
 	this.quantity = quantity;
 }
 public String getValidationDate() {

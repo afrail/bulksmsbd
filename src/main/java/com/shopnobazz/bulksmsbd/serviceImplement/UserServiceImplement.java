@@ -1,6 +1,4 @@
 package com.shopnobazz.bulksmsbd.serviceImplement;
-
-
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,10 @@ import org.springframework.stereotype.Service;
 import com.shopnobazz.bulksmsbd.Repository.PasswordResetTokenRepository;
 import com.shopnobazz.bulksmsbd.Repository.RoleRepository;
 import com.shopnobazz.bulksmsbd.Repository.UserRepository;
+import com.shopnobazz.bulksmsbd.domain.Masking;
+import com.shopnobazz.bulksmsbd.domain.NonMasking;
 import com.shopnobazz.bulksmsbd.domain.User;
+import com.shopnobazz.bulksmsbd.domain.Wallet;
 import com.shopnobazz.bulksmsbd.domainsecurity.PasswordResetToken;
 import com.shopnobazz.bulksmsbd.domainsecurity.UserRole;
 import com.shopnobazz.bulksmsbd.service.UserService;
@@ -38,6 +39,15 @@ PasswordResetTokenRepository passwordResetTokenRepository;
 	            user.getUserRoles().addAll(userRoles);
 	            user.setEnabled(true);
 	             
+	             Masking masking = new Masking();
+	             NonMasking nonMasking = new NonMasking();
+	             Wallet wallet= new Wallet();
+	             masking.setWallet(wallet);
+	             nonMasking.setWallet(wallet);
+	             wallet.setMasking(masking);
+	             wallet.setNonMasking(nonMasking);
+	             wallet.setUser(user);
+	             user.setWallet(wallet);
 	            localUser = userRepository.save(user);
 	        }
 

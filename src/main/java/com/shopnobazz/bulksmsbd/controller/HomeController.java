@@ -1,5 +1,6 @@
 package com.shopnobazz.bulksmsbd.controller;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.access.event.PublicInvocationEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +22,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shopnobazz.bulksmsbd.Repository.PasswordResetTokenRepository;
 import com.shopnobazz.bulksmsbd.Repository.UserRepository;
+import com.shopnobazz.bulksmsbd.domain.Masking;
+import com.shopnobazz.bulksmsbd.domain.NonMasking;
 import com.shopnobazz.bulksmsbd.domain.User;
+import com.shopnobazz.bulksmsbd.domain.Wallet;
 import com.shopnobazz.bulksmsbd.domainsecurity.PasswordResetToken;
 import com.shopnobazz.bulksmsbd.domainsecurity.Role;
 import com.shopnobazz.bulksmsbd.domainsecurity.UserRole;
 import com.shopnobazz.bulksmsbd.service.UserService;
+import com.shopnobazz.bulksmsbd.service.WalletService;
 import com.shopnobazz.bulksmsbd.utility.MailConstructor;
 import com.shopnobazz.bulksmsbd.utility.SecurityUtility;
 @Controller
@@ -43,6 +49,8 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private WalletService walletService; 
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public ModelAndView displayRegistration(ModelAndView modelAndView, User user)
@@ -51,6 +59,21 @@ public class HomeController {
         modelAndView.setViewName("login");
         return modelAndView;
     }
+ 
+   @RequestMapping("/")
+   public String dashbord(Model model,Principal principal){
+	   User user =userService.findByUsername(principal.getName());
+	   Wallet wallet = walletService.findByUser(user);
+	   Masking masking = walletService.maskingSms(wallet);
+	   NonMasking nonMasking= walletService.nonMaskingms(wallet);
+	   model.addAttribute("wallet",wallet );
+	   model.addAttribute("masking",masking );
+	   model.addAttribute("nonmasking",nonMasking);
+	   model.addAttribute("user",user);
+	   
+	 
+	   return "index";
+   }
     
 
 	
@@ -131,6 +154,7 @@ public class HomeController {
 
 	        return modelAndView;
 	    } 
+	  
 	  
 	 
 	

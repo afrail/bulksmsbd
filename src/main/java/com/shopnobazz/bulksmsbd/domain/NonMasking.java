@@ -12,10 +12,10 @@ public class NonMasking {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
-private String nonMaskSms;
+private int nonMaskSms;
 @OneToOne(cascade = CascadeType.ALL)
 private Wallet wallet;
-public NonMasking(Long id, String nonMaskSms, Wallet wallet) {
+public NonMasking(Long id, int nonMaskSms, Wallet wallet) {
 	this.id = id;
 	this.nonMaskSms = nonMaskSms;
 	this.wallet = wallet;
@@ -33,11 +33,11 @@ public void setId(Long id) {
 	this.id = id;
 }
 
-public String getNonMaskSms() {
+public int getNonMaskSms() {
 	return nonMaskSms;
 }
 
-public void setNonMaskSms(String nonMaskSms) {
+public void setNonMaskSms(int nonMaskSms) {
 	this.nonMaskSms = nonMaskSms;
 }
 

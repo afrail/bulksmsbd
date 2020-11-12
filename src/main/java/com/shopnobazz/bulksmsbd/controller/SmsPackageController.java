@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.shopnobazz.bulksmsbd.domain.Masking;
 import com.shopnobazz.bulksmsbd.domain.SmsPackage;
 import com.shopnobazz.bulksmsbd.service.SmspackageService;
 
@@ -19,6 +20,7 @@ import com.shopnobazz.bulksmsbd.service.SmspackageService;
 public class SmsPackageController {
 	@Autowired
 	SmspackageService smspackageService;
+
 	
 @RequestMapping("/add")
   public String smsPackage(Model model)
@@ -29,7 +31,8 @@ public class SmsPackageController {
 	  
   }
 @RequestMapping(value="/add",method = RequestMethod.POST)
-public String addsmsPackage(Model model,@ModelAttribute("smsPackage") SmsPackage smsPackage)
+public String addsmsPackage(
+@ModelAttribute("smsPackage") SmsPackage smsPackage)
 {
 	
 	smspackageService.Save(smsPackage);

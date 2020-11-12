@@ -12,10 +12,10 @@ public class Masking {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
-private String maskSms;
-@OneToOne(cascade =CascadeType.ALL )
+private int maskSms;
+@OneToOne(cascade = CascadeType.ALL )
 private Wallet wallet;
-public Masking(Long id, String maskSms, Wallet wallet) {
+public Masking(Long id, int maskSms, Wallet wallet) {
 	this.id = id;
 	this.maskSms = maskSms;
 	this.wallet = wallet;
@@ -30,10 +30,10 @@ public Long getId() {
 public void setId(Long id) {
 	this.id = id;
 }
-public String getMaskSms() {
+public int getMaskSms() {
 	return maskSms;
 }
-public void setMaskSms(String maskSms) {
+public void setMaskSms(int maskSms) {
 	this.maskSms = maskSms;
 }
 public Wallet getWallet() {

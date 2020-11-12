@@ -81,7 +81,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block sideText text-dark">Afrail Hossain</a>
+          <a th:href="@{user/profile}" class="d-block sideText text-dark"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></a>
         </div>
       </div>
 
@@ -169,7 +169,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <p>Masking SMS</p>
-                <h3>$150</h3>
+                <h3 th:text="${masking.maskSms}"></h3>
                 <p>Validate <strong>13</strong> March <strong>2021</strong></p>
               </div>
               <div class="icon">
@@ -184,7 +184,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <p>Non-Masking SMS</p>
-                <h3>$50</h3>
+                <h3 th:text="${nonmasking.nonMaskSms}"></h3>
                 <p>Validate <strong>14</strong> March <strong>2021</strong></p>
               </div>
               <div class="icon">
@@ -199,7 +199,7 @@
             <div class="small-box bg-warning" style="height: 181px">
               <div class="inner">
                 <p>Total Balance</p>
-                <h3>$1000</h3>
+                <h3 th:text="${wallet.balance}"></h3>
               </div>
               <div class="icon">
                 <i class="far fa-money-bill-alt"></i>
