@@ -5,7 +5,7 @@ import java.util.List;
 import com.shopnobazz.bulksmsbd.domain.SmsPackage;
 
 public interface SmspackageService {
-	SmsPackage findOne();
+	SmsPackage findOne(Long id);
 	List <SmsPackage> findAll();
 	SmsPackage Save(SmsPackage smsPackage);
 	

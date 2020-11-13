@@ -25,16 +25,11 @@ SmsPackageRepository smsPackageRepository;
 	}
 
 
-
-
 	@Override
-	public SmsPackage findOne() {
+	public SmsPackage findOne(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return smsPackageRepository.findById(id).get();
 	}
-
-
-
 
 	@Override
 	public List<SmsPackage> findAll() {

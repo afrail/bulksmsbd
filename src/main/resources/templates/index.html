@@ -170,7 +170,7 @@
               <div class="inner">
                 <p>Masking SMS</p>
                 <h3 th:text="${masking.maskSms}"></h3>
-                <p>Validate <strong>13</strong> March <strong>2021</strong></p>
+                <p>Validate <strong th:text="${masking.maskDate}"></strong></p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -185,7 +185,7 @@
               <div class="inner">
                 <p>Non-Masking SMS</p>
                 <h3 th:text="${nonmasking.nonMaskSms}"></h3>
-                <p>Validate <strong>14</strong> March <strong>2021</strong></p>
+                <p>Validate <strong th:text="${nonmasking.NonMaskDate}"></strong></p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

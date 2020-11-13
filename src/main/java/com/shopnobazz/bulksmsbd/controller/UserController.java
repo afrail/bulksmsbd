@@ -1,13 +1,17 @@
 package com.shopnobazz.bulksmsbd.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shopnobazz.bulksmsbd.Repository.ParchesHistoryRepository;
+import com.shopnobazz.bulksmsbd.domain.ParchesHistory;
 import com.shopnobazz.bulksmsbd.domain.User;
+import com.shopnobazz.bulksmsbd.service.ParchesService;
 import com.shopnobazz.bulksmsbd.service.UserService;
 
 @Controller
@@ -15,16 +19,21 @@ import com.shopnobazz.bulksmsbd.service.UserService;
 public class UserController {
 @Autowired
 UserService userService;
+
+@Autowired
+ParchesService parchesService;
 	
 	@RequestMapping("/profile")
 	public String userProfile(Model model, Principal principal) {
 		User user=userService.findByUsername(principal.getName());
-		
+		List<ParchesHistory> parchesHistory= parchesService.findByUser(user);
+		model.addAttribute("parchesHistory", parchesHistory);
 		model.addAttribute("user", user);
 		
 		
 		return "profile";
 		
 	}
+	
 
 }

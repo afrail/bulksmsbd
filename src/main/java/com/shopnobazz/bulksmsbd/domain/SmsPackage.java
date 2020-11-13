@@ -23,14 +23,14 @@ public class SmsPackage {
  private double price;
  private int quantity;
  private String packageType;
- private String validationDate;
+ private int validationDate;
  @OneToMany(mappedBy = "smsPackage")
  @JsonIgnore
  private List<PackageParchesHistory> packageParchesHistory;
 public SmsPackage() {
 
 }
-public SmsPackage(long id, String packageName, double price, int quantity, String validationDate,String packageType,List<PackageParchesHistory> packageParchesHistory) {
+public SmsPackage(long id, String packageName, double price, int quantity, int validationDate,String packageType,List<PackageParchesHistory> packageParchesHistory) {
 	this.id = id;
 	this.packageName = packageName;
 	this.price = price;
@@ -77,10 +77,10 @@ public int getQuantity() {
 public void setQuantity(int quantity) {
 	this.quantity = quantity;
 }
-public String getValidationDate() {
+public int getValidationDate() {
 	return validationDate;
 }
-public void setValidationDate(String validationDate) {
+public void setValidationDate(int validationDate) {
 	this.validationDate = validationDate;
 }
  

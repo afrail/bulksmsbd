@@ -1,5 +1,7 @@
 package com.shopnobazz.bulksmsbd.domain;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +15,14 @@ public class NonMasking {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
 private int nonMaskSms;
+private Date nonMaskDate;
 @OneToOne(cascade = CascadeType.ALL)
 private Wallet wallet;
-public NonMasking(Long id, int nonMaskSms, Wallet wallet) {
+public NonMasking(Long id, int nonMaskSms, Wallet wallet,Date nonMaskDate) {
 	this.id = id;
 	this.nonMaskSms = nonMaskSms;
 	this.wallet = wallet;
+	this.nonMaskDate=nonMaskDate;
 }
 
 public NonMasking() {
@@ -48,6 +52,16 @@ public Wallet getWallet() {
 public void setWallet(Wallet wallet) {
 	this.wallet = wallet;
 }
+
+public Date getNonMaskDate() {
+	return nonMaskDate;
+}
+
+public void setNonMaskDate(Date nonMaskDate) {
+	this.nonMaskDate = nonMaskDate;
+}
+
+
 
 
 }

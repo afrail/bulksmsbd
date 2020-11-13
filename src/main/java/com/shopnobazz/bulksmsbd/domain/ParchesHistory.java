@@ -1,5 +1,6 @@
 package com.shopnobazz.bulksmsbd.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,9 +20,9 @@ public class ParchesHistory {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
-private String total;
-private String date;
-private String sms;
+private double total;
+private Date date;
+private int sms;
 @ManyToOne()
 @JoinColumn(name="user_id")
 private User user;
@@ -29,7 +30,7 @@ private User user;
 @OneToMany(mappedBy = "parchesHistory",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 private List<PackageParchesHistory> packageParchesHistoryList;
 
-public ParchesHistory(Long id, String total, String date, String sms, User user,
+public ParchesHistory(Long id, double total, Date date, int sms, User user,
 		List<PackageParchesHistory> packageParchesHistoryList) {
 	this.id = id;
 	this.total = total;
@@ -47,22 +48,22 @@ public Long getId() {
 public void setId(Long id) {
 	this.id = id;
 }
-public String getTotal() {
+public double getTotal() {
 	return total;
 }
-public void setTotal(String total) {
+public void setTotal(double total) {
 	this.total = total;
 }
-public String getDate() {
+public Date getDate() {
 	return date;
 }
-public void setDate(String date) {
+public void setDate(Date date) {
 	this.date = date;
 }
-public String getSms() {
+public int getSms() {
 	return sms;
 }
-public void setSms(String sms) {
+public void setSms(int sms) {
 	this.sms = sms;
 }
 public User getUser() {
