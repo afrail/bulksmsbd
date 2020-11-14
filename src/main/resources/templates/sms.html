@@ -166,7 +166,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row ml-5">
-        <form role="form" id="contact-form" class="contact-form">
+        <form role="form" id="contact-form" class="contact-form" th:action="@{/api/send}" th:object="smsRequest">
                     <div class="row">
                         <div class="col-md-6">
                         <div class="form-group">
@@ -175,14 +175,14 @@
                     </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" autocomplete="off" id="email" placeholder="Number">
+                            <input type="email" class="form-control" name="email" autocomplete="off" id="email" placeholder="Number" th:field="*{phoneNumber}">
                         </div>
                     </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                         <div class="form-group">
-                            <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Write Your Message"></textarea>
+                            <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Write Your Message" th:field="*{message}"></textarea>
                         </div>
                     </div>
                     </div>

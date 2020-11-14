@@ -202,9 +202,7 @@
               <div class="d-block" >
                  <table class="table table-dark table-hover">
                 <thead>
-                  <tr>
-                    
-                    <th scope="col">SMS Type</th>
+                  <tr> 
                     <th scope="col">SMS</th>
                     <th scope="col">Date</th>
                     <th scope="col">Price</th>
@@ -212,7 +210,6 @@
                 </thead>
                 <tbody>
                   <tr data-th-each="parchesHistory : ${parchesHistory}">
-                    <th th:text="${parchesHistory.packageType}"></th>
                     <td th:text="${parchesHistory.sms}"></td>
                     <td th:text="${parchesHistory.date}"></td>
                     <td th:text="${parchesHistory.total}"></td>
