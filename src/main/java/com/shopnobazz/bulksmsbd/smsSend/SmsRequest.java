@@ -3,33 +3,37 @@ package com.shopnobazz.bulksmsbd.smsSend;
 
 import javax.validation.constraints.NotBlank;
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SmsRequest {
 
    
-    private  String phoneNumber; // destination
+	 @NotBlank
+	    private final String phoneNumber; // destination
 
+	    @NotBlank
+	    private final String message;
 
-    private  String message;
+	    public SmsRequest(@JsonProperty("phoneNumber") String phoneNumber,
+	                      @JsonProperty("message") String message) {
+	        this.phoneNumber = phoneNumber;
+	        this.message = message;
+	    }
 
-    public SmsRequest(  String phoneNumber,
-             String message) {
-        this.phoneNumber = phoneNumber;
-        this.message = message;
-    }
+	    public String getPhoneNumber() {
+	        return phoneNumber;
+	    }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	    public String getMessage() {
+	        return message;
+	    }
 
-    public String getMessage() {
-        return message;
-    }
-
-    @Override
-    public String toString() {
-        return "SmsRequest{" +
-                "phoneNumber= ..." + '\'' +
-                ", message='" + message + '\'' +
-                '}';
-    }
+	    @Override
+	    public String toString() {
+	        return "SmsRequest{" +
+	                "phoneNumber= ..." + '\'' +
+	                ", message='" + message + '\'' +
+	                '}';
+	    }
 }

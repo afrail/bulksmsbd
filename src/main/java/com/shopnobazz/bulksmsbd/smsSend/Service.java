@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @org.springframework.stereotype.Service
 public class Service {
-    @Autowired
-    private SmsSender smsSender;
+   
+    private final SmsSender smsSender;
 
-    
-//    public Service(@Qualifier("twilio") TwilioSmsSender smsSender) {
-//        this.smsSender = smsSender;
-//    }
+     @Autowired
+    public Service(@Qualifier("twilio") TwilioSmsSender smsSender) {
+        this.smsSender = smsSender;
+    }
 
     public void sendSms(SmsRequest smsRequest) {
         smsSender.sendSms(smsRequest);

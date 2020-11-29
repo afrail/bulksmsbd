@@ -100,13 +100,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link sideText text-dark">
-                  <i style="color: purple" class="nav-icon fas fa-th"></i>
-                  <p>
-                    Profile
-                  </p>
-                </a>
-              </li>
+            <a th:href="@{/user/profile}" class="nav-link sideText text-dark">
+              <i style="color: purple" class="nav-icon fas fa-th"></i>
+              <p>
+                Profile
+              </p>
+            </a>
+          </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon fas fa-copy"></i>
@@ -116,14 +116,16 @@
                 </a>
               </li>
               
-              <li class="nav-item has-treeview">
-                <a href="sms.html" class="nav-link sideText text-dark">
-                  <i style="color: purple" class="nav-icon far fa-envelope"></i>
-                  <p>
-                    Mailbox
-                  </p>
-                </a>
-              </li>
+             <li class="nav-item has-treeview">
+            <a th:href="@{/api/send}" class="nav-link sideText text-dark">
+            
+            
+              <i style="color: purple" class="nav-icon far fa-envelope"></i>
+              <p>
+                Send Message 
+              </p>
+            </a>
+          </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
@@ -179,7 +181,7 @@
                 <!-- small box -->
                 <div class="">
                   <div class="inner float-right" style="margin-right:90px;">
-                    <img src="images/img1.jpeg" class="rounded" alt="Rakib" width="200px" height="180px">
+                    <img src="/images/img1.jpeg" class="rounded" alt="Rakib" width="200px" height="180px">
                     <button type="button" class="btn btn-outline-primary btn-sm d-block ml-5 mt-2">Change Picture</button>
                   </div>
                 </div>
@@ -206,6 +208,7 @@
                     <th scope="col">SMS</th>
                     <th scope="col">Date</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Type</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -213,6 +216,7 @@
                     <td th:text="${parchesHistory.sms}"></td>
                     <td th:text="${parchesHistory.date}"></td>
                     <td th:text="${parchesHistory.total}"></td>
+                    <td th:text="${parchesHistory.smsPackage.packageType}"></td>
                    
 
                   </tr>
@@ -246,30 +250,30 @@
       $.widget.bridge('uibutton', $.ui.button)
       </script>
       <!-- Bootstrap 4 -->
-      <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
       <!-- ChartJS -->
-      <script src="plugins/chart.js/Chart.min.js"></script>
+      <script src="/plugins/chart.js/Chart.min.js"></script>
       <!-- Sparkline -->
-      <script src="plugins/sparklines/sparkline.js"></script>
+      <script src="/plugins/sparklines/sparkline.js"></script>
       <!-- JQVMap -->
-      <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-      <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+      <script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
+      <script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
       <!-- jQuery Knob Chart -->
-      <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+      <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
       <!-- daterangepicker -->
-      <script src="plugins/moment/moment.min.js"></script>
-      <script src="plugins/daterangepicker/daterangepicker.js"></script>
+      <script src="/plugins/moment/moment.min.js"></script>
+      <script src="/plugins/daterangepicker/daterangepicker.js"></script>
       <!-- Tempusdominus Bootstrap 4 -->
-      <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+      <script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
       <!-- Summernote -->
-      <script src="plugins/summernote/summernote-bs4.min.js"></script>
+      <script src="/plugins/summernote/summernote-bs4.min.js"></script>
       <!-- overlayScrollbars -->
-      <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+      <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
       <!-- AdminLTE App -->
-      <script src="dist/js/adminlte.js"></script>
+      <script src="/dist/js/adminlte.js"></script>
       <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-      <script src="dist/js/pages/dashboard.js"></script>
+      <script src="/dist/js/pages/dashboard.js"></script>
       <!-- AdminLTE for demo purposes -->
-      <script src="dist/js/demo.js"></script>
+      <script src="/dist/js/demo.js"></script>
     </body>
   </html>

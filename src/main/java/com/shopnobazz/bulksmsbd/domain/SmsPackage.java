@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,26 +27,28 @@ public class SmsPackage {
  private int validationDate;
  @OneToMany(mappedBy = "smsPackage")
  @JsonIgnore
- private List<PackageParchesHistory> packageParchesHistory;
+ private List<ParchesHistory> parchesHistory;
+ 
 public SmsPackage() {
 
 }
-public SmsPackage(long id, String packageName, double price, int quantity, int validationDate,String packageType,List<PackageParchesHistory> packageParchesHistory) {
+public SmsPackage(long id, String packageName, double price, int quantity, int validationDate,String packageType,List<ParchesHistory> parchesHistory) {
 	this.id = id;
 	this.packageName = packageName;
 	this.price = price;
 	this.quantity = quantity;
 	this.validationDate = validationDate;
 	this.packageType=packageType;
-	this.packageParchesHistory=packageParchesHistory;
+	this.parchesHistory=parchesHistory;
 }
 
 
-public List<PackageParchesHistory> getPackageParchesHistory() {
-	return packageParchesHistory;
+
+public List<ParchesHistory> getParchesHistory() {
+	return parchesHistory;
 }
-public void setPackageParchesHistory(List<PackageParchesHistory> packageParchesHistory) {
-	this.packageParchesHistory = packageParchesHistory;
+public void setParchesHistory(List<ParchesHistory> parchesHistory) {
+	this.parchesHistory = parchesHistory;
 }
 public String getPackageType() {
 	return packageType;

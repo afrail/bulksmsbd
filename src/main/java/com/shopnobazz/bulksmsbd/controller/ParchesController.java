@@ -45,7 +45,7 @@ public class ParchesController {
 	   model.addAttribute("user",user);
 	   
 	 
-	   return "index";
+	   return "redirect:/";
   }
   
   

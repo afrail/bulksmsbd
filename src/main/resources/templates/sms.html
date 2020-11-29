@@ -47,7 +47,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Home</a>
+        <a th:href="@{/}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -94,7 +94,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="index.html" class="nav-link active">
+            <a th:href="@{/}" class="nav-link active">
               <i style="color: white" class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -103,7 +103,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="profile.html" class="nav-link sideText text-dark">
+            <a th:href="@{/user/profile}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon fas fa-th"></i>
               <p>
                 Profile
@@ -120,10 +120,10 @@
           </li>
         
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link sideText text-dark">
+            <a href="@{api/send}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-envelope"></i>
               <p>
-                Mailbox
+                Send Message 
               </p>
             </a>
           </li>
@@ -166,7 +166,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row ml-5">
-        <form role="form" id="contact-form" class="contact-form" th:action="@{/api/send}" th:object="smsRequest">
+        <form role="form" id="contact-form" class="contact-form" action="/api/send"  method="post">
                     <div class="row">
                         <div class="col-md-6">
                         <div class="form-group">
@@ -175,14 +175,14 @@
                     </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" autocomplete="off" id="email" placeholder="Number" th:field="*{phoneNumber}">
+                            <input type="number" class="form-control" name="phoneNumber" autocomplete="off" id="number" placeholder="Number">
                         </div>
                     </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                         <div class="form-group">
-                            <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Write Your Message" th:field="*{message}"></textarea>
+                            <textarea class="form-control textarea" rows="3" name="message" id="Message" placeholder="Write Your Message"></textarea>
                         </div>
                     </div>
                     </div>
@@ -212,9 +212,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -224,7 +224,7 @@
 <!-- ChartJS -->
 <script src="/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<script src="/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
 <script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
 <script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>

@@ -27,17 +27,18 @@ private int sms;
 @JoinColumn(name="user_id")
 private User user;
 
-@OneToMany(mappedBy = "parchesHistory",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-private List<PackageParchesHistory> packageParchesHistoryList;
+@ManyToOne()
+@JoinColumn(name = "sms_package_id")
+private SmsPackage smsPackage;
 
 public ParchesHistory(Long id, double total, Date date, int sms, User user,
-		List<PackageParchesHistory> packageParchesHistoryList) {
+		SmsPackage smsPackage) {
 	this.id = id;
 	this.total = total;
 	this.date = date;
 	this.sms = sms;
 	this.user = user;
-	this.packageParchesHistoryList = packageParchesHistoryList;
+	this.smsPackage = smsPackage;
 }
 public ParchesHistory() {
 	
@@ -72,12 +73,13 @@ public User getUser() {
 public void setUser(User user) {
 	this.user = user;
 }
-public List<PackageParchesHistory> getPackageParchesHistory() {
-	return packageParchesHistoryList;
+public SmsPackage getSmsPackage() {
+	return smsPackage;
 }
-public void setPackageParchesHistory(List<PackageParchesHistory> packageParchesHistoryList) {
-	this.packageParchesHistoryList = packageParchesHistoryList;
+public void setSmsPackage(SmsPackage smsPackage) {
+	this.smsPackage = smsPackage;
 }
+
 
 
 

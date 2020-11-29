@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.shopnobazz.bulksmsbd.Repository.MaskingRepository;
 import com.shopnobazz.bulksmsbd.Repository.NonMaskingRepository;
-import com.shopnobazz.bulksmsbd.Repository.PackageParchesHistoryRepository;
 import com.shopnobazz.bulksmsbd.Repository.ParchesHistoryRepository;
+import com.shopnobazz.bulksmsbd.Repository.WalletRepository;
 import com.shopnobazz.bulksmsbd.domain.Masking;
 import com.shopnobazz.bulksmsbd.domain.NonMasking;
-import com.shopnobazz.bulksmsbd.domain.PackageParchesHistory;
 import com.shopnobazz.bulksmsbd.domain.ParchesHistory;
 import com.shopnobazz.bulksmsbd.domain.SmsPackage;
 import com.shopnobazz.bulksmsbd.domain.User;
@@ -28,9 +27,9 @@ public class ParchesServiceImpl implements ParchesService{
 @Autowired 
 WalletService walletService;
 @Autowired
-SmspackageService smspackageService;
+WalletRepository walletRepository;
 @Autowired
-PackageParchesHistoryRepository packageParchesHistoryRepository;
+SmspackageService smspackageService;
 @Autowired
 ParchesHistoryRepository parchesHistoryRepository;
 @Autowired
@@ -55,16 +54,17 @@ NonMaskingRepository nonMaskingRepository;
 				paHistory.setTotal(smsPackage.getPrice());
 				paHistory.setDate(parchesDate);
 				paHistory.setUser(user);
+				paHistory.setSmsPackage(smsPackage);
 				parchesHistoryRepository.save(paHistory);
-				PackageParchesHistory packageParchesHistory = new PackageParchesHistory();
-				packageParchesHistory.setParchesHistory(paHistory);
-				packageParchesHistory.setSmsPackage(smsPackage);
-				packageParchesHistoryRepository.save(packageParchesHistory);
 				Masking masking=maskingRepository.findByWallet(wallet);
 				int sms=masking.getMaskSms()+smsPackage.getQuantity();
+				
 				masking.setMaskDate(cal.getTime());
 				masking.setMaskSms(sms);
 				maskingRepository.save(masking);
+				double ballance= wallet.getBalance()-smsPackage.getPrice();
+				wallet.setBalance(ballance);
+				walletRepository.save(wallet);
 				
 			}
 			else {
@@ -73,17 +73,17 @@ NonMaskingRepository nonMaskingRepository;
 				paHistory.setTotal(smsPackage.getPrice());
 				paHistory.setDate(parchesDate);
 				paHistory.setUser(user);
+				paHistory.setSmsPackage(smsPackage);
 				parchesHistoryRepository.save(paHistory);
-				PackageParchesHistory packageParchesHistory = new PackageParchesHistory();
-				packageParchesHistory.setParchesHistory(paHistory);
-				packageParchesHistory.setSmsPackage(smsPackage);
-				packageParchesHistoryRepository.save(packageParchesHistory);
 				NonMasking nonMasking=nonMaskingRepository.findByWallet(wallet);
 				int sms=nonMasking.getNonMaskSms()+smsPackage.getQuantity();
 				wallet.setNonMasking(nonMasking);
 				nonMasking.setNonMaskDate(cal.getTime());
 				nonMasking.setNonMaskSms(sms);
 				nonMaskingRepository.save(nonMasking);
+				double ballance= wallet.getBalance()-smsPackage.getPrice();
+				wallet.setBalance(ballance);
+				walletRepository.save(wallet);
 				
 			}
 			

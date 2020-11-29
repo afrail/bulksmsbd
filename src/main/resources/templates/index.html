@@ -44,7 +44,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Home</a>
+        <a th:href="@{/}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -91,7 +91,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a th:href="@{/}" class="nav-link active">
               <i style="color: white" class="nav-icon fas fa-tachometer-alt"></i>
               <p class="sideText">
                 Dashboard
@@ -116,11 +116,11 @@
             </a>
           </li>
         
-          <li class="nav-item has-treeview">
-            <a href="sms.html" class="nav-link sideText text-dark">
+           <li class="nav-item has-treeview">
+            <a th:href="@{/api/send}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-envelope"></i>
               <p>
-                Mailbox
+                Send Message 
               </p>
             </a>
           </li>
