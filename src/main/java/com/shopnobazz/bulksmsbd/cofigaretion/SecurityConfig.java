@@ -36,15 +36,11 @@ private BCryptPasswordEncoder passwordEncoder() {
 	            "/newUser",
 	            "/forgetPassword",
 	            "/login",
-	            "/fonts/**",
-	            "/bookshelf",
-	            "/bookDetail/**",
 	            "/hours",
 	            "/faq",
-	            "/searchByCategory",
-	            "/searchBook",
 	            "/register",
 	            "/confirm-account",
+	            "/registration"
 	            
 	            
 	            

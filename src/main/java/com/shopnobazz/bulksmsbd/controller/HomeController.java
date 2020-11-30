@@ -75,7 +75,12 @@ public class HomeController {
 	   return "index";
    }
     
-
+@RequestMapping("/registration")
+public String newUser(Model model) {
+	User user=new User();
+	model.addAttribute("user", user);
+	return "registration";
+}
 	
 
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -107,7 +112,7 @@ public class HomeController {
 	        user1.setEmail(user.getEmail());
 	        user1.setFirstName(user.getFirstName());
 	        user1.setLastName(user.getLastName());
-	        
+	        user1.setPhone(user.getPhone());
 	        String password = user.getPassword();
 	        String encryptedPassword =SecurityUtility.passwordEncoder().encode(password); 
 	        user1.setPassword(encryptedPassword);
