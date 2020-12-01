@@ -34,6 +34,10 @@ ParchesService parchesService;
 		return "profile";
 		
 	}
+	@RequestMapping("/creditcard")
+	public String creditCard() {
+		return "addCard";
+	}
 	
 
 }

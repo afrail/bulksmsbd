@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html class=no-js lang="en" xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org">
+<html>
   <head>
     <meta charset="utf-8">
-     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +26,7 @@
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+     <link rel="stylesheet" href="/dist/css/style.css">
     <style type="text/css" media="screen">
     .profileText{
     text-transform: uppercase;
@@ -91,7 +91,7 @@
               <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
               <li class="nav-item has-treeview menu-open">
-                <a th:href="@{/}" class="nav-link active">
+                <a href="index.html" class="nav-link active">
                   <i style="color: white" class="nav-icon fas fa-tachometer-alt"></i>
                   <p class="sideText">
                     Dashboard
@@ -100,13 +100,13 @@
                 </a>
               </li>
               <li class="nav-item">
-            <a th:href="@{/user/profile}" class="nav-link sideText text-dark">
-              <i style="color: purple" class="nav-icon fas fa-th"></i>
-              <p>
-                Profile
-              </p>
-            </a>
-          </li>
+                <a href="#" class="nav-link sideText text-dark">
+                  <i style="color: purple" class="nav-icon fas fa-th"></i>
+                  <p>
+                    Profile
+                  </p>
+                </a>
+              </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon fas fa-copy"></i>
@@ -116,16 +116,14 @@
                 </a>
               </li>
               
-             <li class="nav-item has-treeview">
-            <a th:href="@{/api/send}" class="nav-link sideText text-dark">
-            
-            
-              <i style="color: purple" class="nav-icon far fa-envelope"></i>
-              <p>
-                Send Message 
-              </p>
-            </a>
-          </li>
+              <li class="nav-item has-treeview">
+                <a href="sms.html" class="nav-link sideText text-dark">
+                  <i style="color: purple" class="nav-icon far fa-envelope"></i>
+                  <p>
+                    Mailbox
+                  </p>
+                </a>
+              </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
@@ -153,7 +151,7 @@
           <div class="container-fluid">
             <div class="row mb-2" style="border-bottom: 2px solid black">
               <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Profile</h1>
+                <h1 class="m-0 text-dark" style="font-style: italic; font-weight: 800;">Card Information</h1>
               </div>
             </div>
           </div>
@@ -163,69 +161,71 @@
         <section class="content">
           <div class="container">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
-              <div class="col-lg-6 col-6 float-left">
-                <!-- small box -->
-                <div class="small-box">
-                
-                  <div class="inner border" style="line-height: 25px" th:if="${user != null}" id=user-value-user>
-                    <p><span class="profileText">Name:</span> <span th:text="${user.firstName}"></span><span th:text="${user.lastName}"></span></p>
-                    <p><span class="profileText">Email:</span> <span th:text="${user.email}"></span></p>
-                    <p><span class="profileText">Phone:</span> <span th:text="${user.phone}"></span> </p>
-                    <p><span class="profileText">Address: </span>15/A Road#1,Kallyanpur Dhaka01205 </p>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-6 col-6 float-right">
-                <!-- small box -->
-                <div class="">
-                  <div class="inner float-right" style="margin-right:90px;">
-                    <img src="/images/img1.jpeg" class="rounded" alt="Rakib" width="200px" height="180px">
-                    <button type="button" class="btn btn-outline-primary btn-sm d-block ml-5 mt-2">Change Picture</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <hr>
             <div class="row">
-            <div style="width: 500px; height: 200px">
-            <div class="p-2 col-lg-6 col-6 d-inline p-3">
-              <button class="btn btn-outline-primary">Change Password</button>
-              <button class="btn btn-outline-danger mr-5 float-right"><a th:href="@{/user/creditcard}" >Credit Card</a></button>
-            </div>
+            <form class="credit-card">
+      <div class="form-header">
+        <h4 class="title" style="margin-left: 80px;">Credit card detail</h4>
+      </div>
+
+      <div class="form-body">
+        <!-- Card Number -->
+        <input type="text" class="card-number" placeholder="Card Number">
+
+        <!-- Date Field -->
+        <div class="date-field">
+          <div class="month">
+            <select name="Month">
+              <option value="january">January</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+              <option value="july">July</option>
+              <option value="august">August</option>
+              <option value="september">September</option>
+              <option value="october">October</option>
+              <option value="november">November</option>
+              <option value="december">December</option>
+            </select>
+          </div>
+          <div class="year">
+            <select name="Year">
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Card Verification Field -->
+        <div class="card-verification">
+          <div class="cvv-input">
+            <input type="text" placeholder="CVV">
+          </div>
+          <div class="cvv-details">
+            <p>3 or 4 digits usually found <br> on the signature strip</p>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <button type="submit" class="proceed-btn"><a href="#">Proceed</a></button>
+        <button type="submit" class="paypal-btn"><a href="#" style="margin-left: 90px;">Pay With</a></button>
+    </form>
             </div>
 
             <div class="p-2 col-lg-6 col-6 float-right" style="width: auto">
-              <div class="d-block">
-                <h3 class="text-center font-italic font-weight-bold">Purchase History</h3>
-              </div>
 
-              <div class="d-block" >
-                 <table class="table table-dark table-hover">
-                <thead>
-                  <tr> 
-                    <th scope="col">SMS</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr data-th-each="parchesHistory : ${parchesHistory}">
-                    <td th:text="${parchesHistory.sms}"></td>
-                    <td th:text="${parchesHistory.date}"></td>
-                    <td th:text="${parchesHistory.total}"></td>
-                    <td th:text="${parchesHistory.smsPackage.packageType}"></td>
-                   
-
-                  </tr>
-                 
-                </tbody>
-              </table>
-                          </div>
-                          </div>
-                        </div>
+              
+            </div>
             </div>
           </section>
         </div>
@@ -252,28 +252,28 @@
       <!-- Bootstrap 4 -->
       <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
       <!-- ChartJS -->
-      <script src="/plugins/chart.js/Chart.min.js"></script>
+      <script src="plugins/chart.js/Chart.min.js"></script>
       <!-- Sparkline -->
-      <script src="/plugins/sparklines/sparkline.js"></script>
+      <script src="plugins/sparklines/sparkline.js"></script>
       <!-- JQVMap -->
-      <script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
-      <script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+      <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+      <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
       <!-- jQuery Knob Chart -->
-      <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+      <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
       <!-- daterangepicker -->
-      <script src="/plugins/moment/moment.min.js"></script>
-      <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+      <script src="plugins/moment/moment.min.js"></script>
+      <script src="plugins/daterangepicker/daterangepicker.js"></script>
       <!-- Tempusdominus Bootstrap 4 -->
-      <script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+      <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
       <!-- Summernote -->
-      <script src="/plugins/summernote/summernote-bs4.min.js"></script>
+      <script src="plugins/summernote/summernote-bs4.min.js"></script>
       <!-- overlayScrollbars -->
-      <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+      <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
       <!-- AdminLTE App -->
-      <script src="/dist/js/adminlte.js"></script>
+      <script src="dist/js/adminlte.js"></script>
       <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-      <script src="/dist/js/pages/dashboard.js"></script>
+      <script src="dist/js/pages/dashboard.js"></script>
       <!-- AdminLTE for demo purposes -->
-      <script src="/dist/js/demo.js"></script>
+      <script src="dist/js/demo.js"></script>
     </body>
   </html>
