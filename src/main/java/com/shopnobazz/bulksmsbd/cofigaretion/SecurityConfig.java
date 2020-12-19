@@ -56,7 +56,7 @@ private BCryptPasswordEncoder passwordEncoder() {
           .antMatchers("/newUser").permitAll()
           .antMatchers("/forgetPassword").permitAll()
           
-          .antMatchers("/home/**","/adminhome/**","/package/**","/myAdmin").hasAuthority("ROLE_Admin")
+          .antMatchers("/home/**","/adminhome/**","/myAdmin").hasAuthority("ROLE_Admin")
           .antMatchers("/user/**","/package/**","/parches/**").hasAuthority("ROLE_USER")
           .anyRequest()
           .authenticated();

@@ -19,7 +19,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
@@ -133,7 +133,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-                <a href="#" class="nav-link sideText text-dark">
+                <a th:href="@{/parches/sms}" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
                   <p>
                    SMS package
@@ -184,7 +184,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <p>Non-Masking SMS</p>
-                <h3 th:text="${nonmasking.nonMaskSms}"></h3>
+                <h3 id='noneMask' th:text="${nonmasking.nonMaskSms}"></h3>
                 <p>Validate <strong th:text="${nonmasking.NonMaskDate}"></strong></p>
               </div>
               <div class="icon">
@@ -242,7 +242,9 @@
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
                   <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;">
+                       style="position: relative; height: 300px;" >
+                    <div id="piechart"></div>
+
                       <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>                         
                    </div>
                   <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
@@ -274,6 +276,31 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+	  var d = document.getElementById("noneMask").value;
+	  var data = google.visualization.arrayToDataTable([
+	  ['Type', 'Hours per Day'],
+	  ['masking', 100],
+	  ['non masking', d],
+	  ['balance', 45]
+	]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>

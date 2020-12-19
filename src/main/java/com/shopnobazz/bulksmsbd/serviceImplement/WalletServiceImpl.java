@@ -38,5 +38,11 @@ NonMaskingRepository nonMaskingRepository;
 		return walletRepository.findByUser(user);
 	}
 
+	@Override
+	public void save(NonMasking nonMaskingms) {
+		nonMaskingRepository.save(nonMaskingms);
+		
+	}
+
 
 }

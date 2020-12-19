@@ -10,4 +10,5 @@ public interface WalletService {
 	Masking maskingSms(Wallet wallet);
 	NonMasking nonMaskingms(Wallet wallet);
 	Wallet findByUser(User user);
+    void save(NonMasking nonMaskingms);
 }

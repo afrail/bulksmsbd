@@ -129,7 +129,7 @@ public String newUser(Model model) {
 	        String appUrl = "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
 
 
-	        SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user,password,encryptedPassword);
+	        SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(),  user,password,encryptedPassword);
 
 	        mailSender.send(email);
 

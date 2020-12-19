@@ -1,5 +1,7 @@
 package com.shopnobazz.bulksmsbd.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopnobazz.bulksmsbd.domain.Masking;
+import com.shopnobazz.bulksmsbd.domain.NonMasking;
+import com.shopnobazz.bulksmsbd.domain.User;
+import com.shopnobazz.bulksmsbd.service.UserService;
+import com.shopnobazz.bulksmsbd.service.WalletService;
 import com.shopnobazz.bulksmsbd.smsSend.Service;
 import com.shopnobazz.bulksmsbd.smsSend.SmsRequest;
 
@@ -19,6 +26,10 @@ import com.shopnobazz.bulksmsbd.smsSend.SmsRequest;
 @Controller
 @RequestMapping(value="/api")
 public class SendSmsController {
+	@Autowired
+	WalletService walletService;
+	@Autowired
+	UserService userService;
     private final Service service;
     @Autowired
     SendSmsController(Service service){
@@ -32,8 +43,10 @@ public class SendSmsController {
         
     }
     @RequestMapping(value="/send",method=RequestMethod.POST)
-    public  String sms(SmsRequest smsRequest) {
-    	service.sendSms(new SmsRequest( smsRequest.getPhoneNumber(),smsRequest.getMessage()));
+    public  String sms(SmsRequest smsRequest,Principal principal) {
+    	User user = userService.findByUsername(principal.getName());
+    	NonMasking nonMasking= walletService.nonMaskingms(walletService.findByUser(user));
+    	service.sendSms(new SmsRequest( smsRequest.getPhoneNumber(),smsRequest.getMessage()),user,nonMasking);
     	return "sms";
     }
     
