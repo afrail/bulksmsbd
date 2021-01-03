@@ -6,7 +6,7 @@
          </head>
     <body>
        
-                        
+                       
                         <div class="row" data-th-each="smsPackage : ${smsPackage}">
                            
                             <div class="col-5 fs-4 my-5">
@@ -18,7 +18,7 @@
                             <td><span style='font-weight:100; font-style: italic;'th:text="${smsPackage.quantity}"></span></td>
                             <td><span style='font-weight:100; font-style: italic;'th:text="${smsPackage.price}"></span></td>
                             <td><span style='font-weight:100; font-style: italic;'th:text="${smsPackage.validationDate}"></span></td>
-                            <td><button th:href="@{/package(id=${smsPackage.id})}">buy</button></td>
+                            <td><a th:href="@{/parches/buy(id=${smsPackage.id})}">buy</a></td>
                             </tr>
                             
                             
@@ -28,8 +28,7 @@
                                 
                             </div>
                         </div>
-                   
-               
+         
                     
              
              
