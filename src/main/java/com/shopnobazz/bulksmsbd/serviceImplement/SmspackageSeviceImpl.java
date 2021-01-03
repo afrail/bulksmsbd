@@ -48,7 +48,7 @@ SmsPackageRepository smsPackageRepository;
 
 	@Override
 	public void removeOne(Long id) {
-		// TODO Auto-generated method stub
+		smsPackageRepository.deleteById(id);
 		
 	}
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head>
   <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Registration Page</title>
 
@@ -42,6 +43,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
+        <span style="color: red;" th:if="${usernameExists}">user name already exits. Choose a different one.</span>
           <input type="text" class="form-control" placeholder="User name" th:field="*{username}" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -50,6 +52,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
+        <span style="color: red;" th:if="${emailExists}">Email already exits. Choose a different one.</span>
           <input type="email" class="form-control" placeholder="Email" th:field="*{email}" name="email">
           <div class="input-group-append">
             <div class="input-group-text">

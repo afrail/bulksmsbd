@@ -1,4 +1,6 @@
 package com.shopnobazz.bulksmsbd.serviceImplement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ PasswordResetTokenRepository passwordResetTokenRepository;
 	             Masking masking = new Masking();
 	             NonMasking nonMasking = new NonMasking();
 	             Wallet wallet= new Wallet();
+	             wallet.setBalance(100.00);
 	             masking.setWallet(wallet);
 	             nonMasking.setWallet(wallet);
 	             wallet.setMasking(masking);
@@ -67,6 +70,27 @@ PasswordResetTokenRepository passwordResetTokenRepository;
 			 final PasswordResetToken myToken = new PasswordResetToken(token, user);
 		        passwordResetTokenRepository.save(myToken);
 			
+		}
+		
+		
+		@Override
+		public List<User> allUser() {
+			List<User> user = (List<User>) userRepository.findAll();
+			List<User> List= new ArrayList<>();
+			for(User user1:user) {
+				List.add(user1);
+			}
+			return List;
+		}
+		@Override
+		public void save(User user) {
+			userRepository.save(user);
+			
+		}
+		@Override
+		public User findById(Long id) {
+			
+			return userRepository.findById(id).get();
 		}
 
 }

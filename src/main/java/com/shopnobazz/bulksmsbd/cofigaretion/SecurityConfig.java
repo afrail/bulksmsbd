@@ -6,11 +6,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.shopnobazz.bulksmsbd.serviceImplement.UserSecurityService;
-import com.shopnobazz.bulksmsbd.utility.SecurityUtility;
+//import com.shopnobazz.bulksmsbd.utility.SecurityUtility;
 
 @Configuration
 @EnableWebSecurity
@@ -20,9 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 @Autowired
 UserSecurityService userSecurityService;
 
-private BCryptPasswordEncoder passwordEncoder() {
-    return SecurityUtility.passwordEncoder();
-}
+//private BCryptPasswordEncoder passwordEncoder() {
+//    return SecurityUtility.passwordEncoder();
+//}
 
 
 	 private static final String[] PUBLIC_MATCHERS = {
@@ -56,8 +56,8 @@ private BCryptPasswordEncoder passwordEncoder() {
           .antMatchers("/newUser").permitAll()
           .antMatchers("/forgetPassword").permitAll()
           
-          .antMatchers("/home/**","/adminhome/**","/myAdmin").hasAuthority("ROLE_Admin")
-          .antMatchers("/user/**","/package/**","/parches/**").hasAuthority("ROLE_USER")
+          .antMatchers("/home/**","/package/**","/user/**").hasAuthority("ROLE_ADMIN")
+          .antMatchers("/parches/**","/api/**","/user/**").hasAuthority("ROLE_USER")
           .anyRequest()
           .authenticated();
 

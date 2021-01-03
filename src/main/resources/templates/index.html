@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
   <title>Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +55,7 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <form class="form-inline ml-3" >
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -81,7 +84,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a th:href="@{user/profile}" class="d-block sideText text-dark"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></a>
+          <a th:href="@{/user/profile}" class="d-block sideText text-dark"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></a>
         </div>
       </div>
 
@@ -100,23 +103,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a th:href="@{user/profile}" class="nav-link sideText text-dark">
+            <a th:href="@{/user/profile}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon fas fa-th"></i>
               <p>
                 Profile
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link sideText text-dark">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+            <a th:href="@{/package/allsms}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon fas fa-copy"></i>
-              <p>
-                Group
-              </p>
+
+                SMS Package
+
             </a>
           </li>
         
-           <li class="nav-item has-treeview">
+           <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
             <a th:href="@{/api/send}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-envelope"></i>
               <p>
@@ -124,15 +127,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link sideText text-dark">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <a th:href="@{/package/add}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
               <p>
-                Recharge
+                Add SMS Package
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
                 <a th:href="@{/parches/sms}" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
                   <p>
@@ -140,6 +143,14 @@
                   </p>
                 </a>
           </li>
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <a th:href="@{/package/user}" class="nav-link sideText text-dark">
+                  <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
+                  <p>
+                   View User
+                  </p>
+                </a>
+          </li>   
         </ul>
       </nav>
     </div>
@@ -161,10 +172,10 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container-fluid" sec:authorize="hasAuthority('ROLE_USER')">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-12">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
@@ -179,7 +190,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-12">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
@@ -194,7 +205,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-12">
             <!-- small box -->
             <div class="small-box bg-warning" style="height: 181px">
               <div class="inner">
@@ -208,19 +219,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger" style="height: 181px">
-              <div class="inner">
-                <p>Totall User</p>
-                <h3>2540</h3>
-              </div>
-              <div class="icon">
-                <i class="fas fa-user-friends"></i>
-              </div>
-              <a style="margin-top: 38px" href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+         
           <!-- ./col -->
         </div>
         <!-- /.row -->

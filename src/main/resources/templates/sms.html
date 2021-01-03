@@ -89,14 +89,14 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+    <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a th:href="@{/}" class="nav-link active">
               <i style="color: white" class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+              <p class="sideText">
                 Dashboard
                 <i class="right"></i>
               </p>
@@ -110,17 +110,17 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link sideText text-dark">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+            <a th:href="@{/package/allsms}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon fas fa-copy"></i>
-              <p>
-                Group
-              </p>
+
+                SMS Package
+
             </a>
           </li>
         
-          <li class="nav-item has-treeview">
-            <a href="@{api/send}" class="nav-link sideText text-dark">
+           <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+            <a th:href="@{/api/send}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-envelope"></i>
               <p>
                 Send Message 
@@ -128,23 +128,32 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link sideText text-dark">
+            <a th:href="@{/package/add}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
               <p>
-                Recharge
+                Add SMS Package
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-                <a href="#" class="nav-link sideText text-dark">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+                <a th:href="@{/parches/sms}" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
                   <p>
                    SMS package
                   </p>
                 </a>
-              </li>
+          </li>
+          <li class="nav-item has-treeview">
+                <a th:href="@{/package/user}" class="nav-link sideText text-dark">
+                  <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
+                  <p>
+                   View User
+                  </p>
+                </a>
+          </li>   
         </ul>
       </nav>
+    
     </div>
   </aside>
 

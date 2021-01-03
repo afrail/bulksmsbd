@@ -94,7 +94,7 @@ public String newUser(Model model) {
 	        if(userService.findByUsername(user.getUsername()) != null) {
 	            model.addAttribute("usernameExists", true);
 
-	            return "login";
+	            return "registration";
 	        }
 	        model.addAttribute("classActiveNewAccount", true);
 	        model.addAttribute("email", user.getEmail());
@@ -104,7 +104,7 @@ public String newUser(Model model) {
 	        if(userService.findByEmail(user.getEmail()) != null) {
 	            model.addAttribute("emailExists", true);
 
-	            return "login";
+	            return "registration";
 	        }
 
 	        User user1 = new User();
