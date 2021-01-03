@@ -65,7 +65,7 @@ NonMaskingRepository nonMaskingRepository;
 				double ballance= wallet.getBalance()-smsPackage.getPrice();
 				wallet.setBalance(ballance);
 				walletRepository.save(wallet);
-				
+				return wallet;
 			}
 			else {
 				ParchesHistory paHistory = new ParchesHistory();
@@ -84,13 +84,13 @@ NonMaskingRepository nonMaskingRepository;
 				double ballance= wallet.getBalance()-smsPackage.getPrice();
 				wallet.setBalance(ballance);
 				walletRepository.save(wallet);
-				
+				return wallet;
 			}
 			
 		
 		}
 		
-		return wallet;
+		return null;
 		
 	}
 

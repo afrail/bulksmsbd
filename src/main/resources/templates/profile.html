@@ -82,7 +82,7 @@
               <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block sideText text-dark">Afrail Hossain</a>
+              <a th:href="@{/user/profile}" class="d-block sideText text-dark"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></a>
             </div>
           </div>
           <!-- Sidebar Menu -->
@@ -107,12 +107,20 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_ADMIN')">
             <a th:href="@{/package/allsms}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon fas fa-copy"></i>
 
                 SMS Package
 
+            </a>
+          </li>
+           <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+            <a th:href="@{/user/sending}" class="nav-link sideText text-dark">
+              <i style="color: purple" class="nav-icon far fa-envelope"></i>
+              <p>
+                Sending History
+              </p>
             </a>
           </li>
         
@@ -124,7 +132,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_ADMIN')">
             <a th:href="@{/package/add}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
               <p>
@@ -140,7 +148,7 @@
                   </p>
                 </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_ADMIN')">
                 <a th:href="@{/package/user}" class="nav-link sideText text-dark">
                   <i style="color: purple" class="nav-icon far fa-money-bill-alt"></i>
                   <p>
@@ -150,6 +158,7 @@
           </li>   
         </ul>
       </nav>
+         
              
         </div>
       </aside>
@@ -184,26 +193,18 @@
                 </div>
               </div>
               <!-- ./col -->
-              <div class="col-lg-6 col-6 float-right">
-                <!-- small box -->
-                <div class="">
-                  <div class="inner float-right" style="margin-right:90px;">
-                    <img src="/images/img1.jpeg" class="rounded" alt="Rakib" width="200px" height="180px">
-                    <button type="button" class="btn btn-outline-primary btn-sm d-block ml-5 mt-2">Change Picture</button>
-                  </div>
-                </div>
-              </div>
+            
             </div>
             <hr>
             <div class="row">
             <div style="width: 500px; height: 200px">
             <div class="p-2 col-lg-6 col-6 d-inline p-3">
               <button class="btn btn-outline-primary">Change Password</button>
-              <button class="btn btn-outline-danger mr-5 float-right"><a th:href="@{/user/sending}" >Sending History</a></button>
+              
             </div>
             </div>
 
-            <div class="p-2 col-lg-6 col-6 float-right" style="width: auto">
+            <div class="p-2 col-lg-6 col-6 float-right" style="width: auto" sec:authorize="hasAuthority('ROLE_USER')">
               <div class="d-block">
                 <h3 class="text-center font-italic font-weight-bold">Purchase History</h3>
               </div>

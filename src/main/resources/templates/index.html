@@ -110,12 +110,20 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+          <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_ADMIN')">
             <a th:href="@{/package/allsms}" class="nav-link sideText text-dark">
               <i style="color: purple" class="nav-icon fas fa-copy"></i>
 
                 SMS Package
 
+            </a>
+          </li>
+           <li class="nav-item has-treeview" sec:authorize="hasAuthority('ROLE_USER')">
+            <a th:href="@{/user/sending}" class="nav-link sideText text-dark">
+              <i style="color: purple" class="nav-icon far fa-envelope"></i>
+              <p>
+                Sending History
+              </p>
             </a>
           </li>
         

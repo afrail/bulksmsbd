@@ -37,8 +37,11 @@ public class SendSmsController {
     }
 
     @RequestMapping("/send")
-    public String sendSms(SmsRequest smsRequest,Model model) {
+    public String sendSms(SmsRequest smsRequest,Model model,Principal principal) {
+    	User user=userService.findByUsername(principal.getName());
     	model.addAttribute("smsRequest",smsRequest);
+    	model.addAttribute("user", user);
+    	
     	return "sms";
         
     }

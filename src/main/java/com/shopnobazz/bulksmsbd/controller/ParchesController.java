@@ -49,18 +49,24 @@ public class ParchesController {
 	  
 	  
 	User user=userService.findByUsername(principal.getName());
-	parchesService.checkBalance(user, id);
+	Wallet wallet1= parchesService.checkBalance(user, id);
 	
 	 Wallet wallet = walletService.findByUser(user);
+	 
 	   Masking masking = walletService.maskingSms(wallet);
 	   NonMasking nonMasking= walletService.nonMaskingms(wallet);
+	   if(wallet1 !=null) {
 	   model.addAttribute("wallet",wallet );
 	   model.addAttribute("masking",masking );
 	   model.addAttribute("nonmasking",nonMasking);
 	   model.addAttribute("user",user);
+	   return "redirect:/"; 
+	   }
+	   model.addAttribute("ballance",true);
+	   return "viewSmsPackage";
 	   
 	 
-	   return "redirect:/";
+	   
   }
   
   

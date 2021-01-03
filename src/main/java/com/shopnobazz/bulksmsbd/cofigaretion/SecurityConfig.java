@@ -53,11 +53,11 @@ UserSecurityService userSecurityService;
           .authorizeRequests()
           .antMatchers(PUBLIC_MATCHERS)
           .permitAll()
-          .antMatchers("/newUser").permitAll()
+          .antMatchers("/newUser","/user/**").permitAll()
           .antMatchers("/forgetPassword").permitAll()
           
-          .antMatchers("/home/**","/package/**","/user/**").hasAuthority("ROLE_ADMIN")
-          .antMatchers("/parches/**","/api/**","/user/**").hasAuthority("ROLE_USER")
+          .antMatchers("/home/**","/package/**").hasAuthority("ROLE_ADMIN")
+          .antMatchers("/parches/**","/api/**").hasAuthority("ROLE_USER")
           .anyRequest()
           .authenticated();
 
