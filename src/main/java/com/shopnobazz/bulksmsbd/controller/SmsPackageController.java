@@ -1,5 +1,6 @@
 package com.shopnobazz.bulksmsbd.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,12 @@ public class SmsPackageController {
     UserService userService;
 	
 @RequestMapping("/add")
-  public String smsPackage(Model model)
+  public String smsPackage(Model model,Principal principal)
   {
+	User user = userService.findByUsername(principal.getName());
 	SmsPackage smsPackage=new SmsPackage();
 	model.addAttribute("smsPackage",smsPackage);
+	model.addAttribute("user", user);
 	return "smsPackage";
 	  
   }
@@ -44,10 +47,12 @@ public String addsmsPackage(
 }
 
 @RequestMapping("/allsms")
-public String allSms(Model model)
+public String allSms(Model model,Principal principal)
 {
+	User user = userService.findByUsername(principal.getName());
 	List<SmsPackage> smsPackage = smspackageService.findAll();
 	model.addAttribute("smsPackage",smsPackage);
+	model.addAttribute("user", user);
 	return "allSmspackage";
 	
 }
@@ -57,17 +62,22 @@ public String delete(@RequestParam("id")  Long id) {
 	return "redirect:allsms";
 }
 @RequestMapping("/edit")
-public String edit(@RequestParam("id")  Long id,Model model) {
+public String edit(@RequestParam("id")  Long id,Model model,Principal principal) {
+	
 	SmsPackage smsPackage;
 	smsPackage=smspackageService.findOne(id);
+	User user = userService.findByUsername(principal.getName());
 	model.addAttribute("smsPackage",smsPackage);
+	model.addAttribute("user", user);
 	return "smsPackage";
 }
 
 @RequestMapping("/user")
-public String user(Model model) {
+public String user(Model model,Principal principal) {
+	User user = userService.findByUsername(principal.getName());
 	List<User> allUser = userService.allUser();
 	model.addAttribute("allUser",allUser);
+	model.addAttribute("user", user);
 	return"userinfo";
 }
 

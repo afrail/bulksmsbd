@@ -35,10 +35,12 @@ public class ParchesController {
 	
 	
 	@RequestMapping("/sms")
-	public String allSms(Model model)
+	public String allSms(Model model,Principal principal)
 	{
+		User user = userService.findByUsername(principal.getName());
 		List<SmsPackage> smsPackage = smspackageService.findAll();
 		model.addAttribute("smsPackage",smsPackage);
+		model.addAttribute("user",user);
 		return "viewSmsPackage";
 		
 	}
@@ -63,6 +65,7 @@ public class ParchesController {
 	   return "redirect:/"; 
 	   }
 	   model.addAttribute("ballance",true);
+	   model.addAttribute("user",user);
 	   return "viewSmsPackage";
 	   
 	 

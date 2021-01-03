@@ -56,6 +56,7 @@ UserSecurityService userSecurityService;
 		User user=userService.findByUsername(principal.getName());
 		List<SendingHistory> sendingHistory = sendingHistoryService.findAll(user);
 		model.addAttribute("sendingHistory", sendingHistory);
+		model.addAttribute("user", user);
 		return"sendingHistory";
 	}
 @RequestMapping("/updateUserInfo")
