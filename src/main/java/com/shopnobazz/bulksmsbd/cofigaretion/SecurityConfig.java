@@ -40,7 +40,8 @@ UserSecurityService userSecurityService;
 	            "/faq",
 	            "/register",
 	            "/confirm-account",
-	            "/registration"
+	            "/registration",
+	            "/main"
 	            
 	            
 	            
@@ -68,7 +69,7 @@ UserSecurityService userSecurityService;
           .loginPage("/login").permitAll()
           .defaultSuccessUrl("/")
           .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-          .logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
+          .logoutSuccessUrl("/login?logout").deleteCookies("remember-me").permitAll()
           .and()
           .rememberMe();
                 
