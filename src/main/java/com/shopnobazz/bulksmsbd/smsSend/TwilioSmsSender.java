@@ -66,6 +66,7 @@ public class TwilioSmsSender implements SmsSender {
     	}
     	}else {
         if (isPhoneNumberValid(smsRequest.getPhoneNumber())) {
+        	try {
             PhoneNumber to = new PhoneNumber("+88"+smsRequest.getPhoneNumber());
             PhoneNumber from = new PhoneNumber(twilioConfiguration.getTrialNumber());
             String message = smsRequest.getMessage();
@@ -76,6 +77,10 @@ public class TwilioSmsSender implements SmsSender {
             SendingHistoryService.save(to1, message, user);
             nonMasking.setNonMaskSms(nonMasking.getNonMaskSms()-1);
             walletService.save(nonMasking);
+        	}
+        	catch(Exception e) {
+        		
+        	}
         } else {
             throw new ValidationException("Phone Number is  not valid");     
             }

@@ -48,7 +48,7 @@ NonMaskingRepository nonMaskingRepository;
 		if(wallet.getBalance() >= smsPackage.getPrice()) {
 			
 			
-			if(smsPackage.getPackageType()=="masking") {
+			if(smsPackage.getPackageType().matches("masking")) {
 				ParchesHistory paHistory = new ParchesHistory();
 				paHistory.setSms(smsPackage.getQuantity());
 				paHistory.setTotal(smsPackage.getPrice());

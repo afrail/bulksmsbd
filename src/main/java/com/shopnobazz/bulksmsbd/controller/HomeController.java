@@ -87,7 +87,6 @@ public String newUser(Model model) {
 	model.addAttribute("user", user);
 	return "registration";
 }
-	
 
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
 	    public String newUserPost(
@@ -119,6 +118,7 @@ public String newUser(Model model) {
 	        user1.setFirstName(user.getFirstName());
 	        user1.setLastName(user.getLastName());
 	        user1.setPhone(user.getPhone());
+	        user1.setEnabled(false);
 	        String password = user.getPassword();
 	        String encryptedPassword =SecurityUtility.passwordEncoder().encode(password); 
 	        user1.setPassword(encryptedPassword);
@@ -130,12 +130,12 @@ public String newUser(Model model) {
 	        userService.createUser(user1, userRoles);
 
 	        String token = UUID.randomUUID().toString();
-	        userService.createPasswordResetTokenForUser(user, token);
+	        userService.createPasswordResetTokenForUser(user1, token);
            
 	        String appUrl = "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
 
 
-	        SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(),  user,password,encryptedPassword);
+	        SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(),  user,password,encryptedPassword,token);
 
 	        mailSender.send(email);
 
@@ -145,25 +145,28 @@ public String newUser(Model model) {
 	       
 	        return "login";
 	    }
-	  @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-	    public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
+	  @RequestMapping(value="/confirm-account", method= {RequestMethod.GET})
+	    public String confirmUserAccount(Model model, @RequestParam("token")String confirmationToken)
 	    {
 		  PasswordResetToken token = passwordResetTokenRepository.findByToken(confirmationToken);
 
 	        if(token != null)
 	        {
-	            User user1 = userRepository.findByEmail(token.getUser().getEmail());
-	            user1.setEnabled(true);
-	            userRepository.save(user1);
-	            modelAndView.setViewName("accountVerified");
+	            User user = userRepository.findByEmail(token.getUser().getEmail());
+	            user.setEnabled(true);
+	            userRepository.save(user);
+	           model.addAttribute("accountVerified", true);
+	           model.addAttribute("user",user);
+	            return "login";
+	           // modelAndView.setViewName("accountVerified",true);
 	        }
 	        else
 	        {
-	            modelAndView.addObject("message","The link is invalid or broken!");
+	           // modelAndView.addObject("message","The link is invalid or broken!");
 	            //modelAndView.setViewName(" accountVerifi faild ");
 	        }
 
-	        return modelAndView;
+	        return "login";
 	    } 
 	  
 	  

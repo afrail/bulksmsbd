@@ -16,14 +16,14 @@ public class MailConstructor {
 
 
 	    public SimpleMailMessage constructResetTokenEmail(
-	            String contextPath, Locale locale, User user, String password,String encryptedPassword
-	    ) {
-	       // String url = contextPath+"/confirm-account?token="+token;
-	        String message = "\nPlease click on this link to verify your email and edit your personal information. Your password is: \n"+password+"\n"+encryptedPassword;
+	            String contextPath, Locale locale, User user, String password,String encryptedPassword,
+	    String token) {
+	       String url = contextPath+"/confirm-account?token="+token;
+	        String message = "\nPlease click on this link to verify your email and edit your personal information. Your password is: \n"+password+"\n";
 	        SimpleMailMessage email = new SimpleMailMessage();
 	        email.setTo(user.getEmail());
-	        email.setSubject("Le's Blood Donation Bangladesh - New User");
-	       // email.setText(url+message);
+	        email.setSubject("Le's Shopnobaz Bulk sms - New User");
+	        email.setText(url+message);
 	        email.setFrom(env.getProperty("support.email"));
 	        return email;
 	    }

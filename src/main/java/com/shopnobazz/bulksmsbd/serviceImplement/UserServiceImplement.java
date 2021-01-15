@@ -39,7 +39,7 @@ PasswordResetTokenRepository passwordResetTokenRepository;
 	            }
 
 	            user.getUserRoles().addAll(userRoles);
-	            user.setEnabled(true);
+	            user.setEnabled(false);
 	             
 	             Masking masking = new Masking();
 	             NonMasking nonMasking = new NonMasking();

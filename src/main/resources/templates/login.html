@@ -25,6 +25,12 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form th:action="@{/login}" th:object="${user}" method="post">
+       <div class="alert alert-info" th:if="${emailSent}">
+                                    An email has been sent to the email address you just registered. Please validate your email address and update your password information.
+                                </div>
+                               
+                                
+                                <div th:if="${param.error != null}" style="color: red;">Incorrect username or password.</div>
         <div class="input-group mb-3">
           <input class="form-control" placeholder="user name" th:field="*{username}" type="text" name="username">
           <div class="input-group-append">

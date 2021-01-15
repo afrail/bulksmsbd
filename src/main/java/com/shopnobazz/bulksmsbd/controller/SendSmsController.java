@@ -1,3 +1,4 @@
+
 package com.shopnobazz.bulksmsbd.controller;
 
 import java.security.Principal;
@@ -50,7 +51,7 @@ public class SendSmsController {
     	User user = userService.findByUsername(principal.getName());
     	NonMasking nonMasking= walletService.nonMaskingms(walletService.findByUser(user));
     	service.sendSms(new SmsRequest( smsRequest.getPhoneNumber(),smsRequest.getMessage()),user,nonMasking);
-    	return "sms";
+    	return "redirect:send";
     }
     
 	

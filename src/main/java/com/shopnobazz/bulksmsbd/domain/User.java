@@ -37,7 +37,7 @@ public class User implements UserDetails{
 	@Column(name = "email", nullable = false, updatable = false)
 	private String email;
 	private String phone;
-	private boolean enabled = false;
+	private boolean enabled;
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
 	private Wallet wallet;
 	@OneToMany(mappedBy = "user",cascade =CascadeType.ALL )

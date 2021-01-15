@@ -44,20 +44,16 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" th:href="@{/}" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a th:href="@{/}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
-     
-     
-    
+      </li>       
     </ul>
-    
-    
+       
 
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3" >
@@ -70,16 +66,12 @@
         </div>
       </div>
     </form>
-     <div class="nav-item d-none d-sm-inline-block">
+     <div class="nav-item d-none d-sm-inline-block" style="position: absolute; right: 5px;padding: 10px;">
         
-        <div class="input-group-append">
-        <a th:href="@{/logout}">Logout</a>  
-           
-          
+        <div class="mx-r">
+        <a class="text-light " th:href="@{/logout}">Logout</a>         
         </div>
       </div>
-      
- 
   </nav>
 
   <!-- Main Sidebar Container -->
@@ -203,7 +195,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <p>Masking SMS</p>
-                <h3 th:text="${masking.maskSms}"></h3>
+                <h3 id='masking'th:text="${masking.maskSms}"></h3>
                 <p>Validate <strong th:text="${masking.maskDate}"></strong></p>
               </div>
               <div class="icon">
@@ -310,10 +302,11 @@ function drawChart() {
 	  var d = document.getElementById("noneMask").value;
 	  var dumi = parseInt(document.querySelector('#balance').textContent)
 	  var dumi01 = parseInt(document.querySelector('#noneMask').textContent)
+	  var dumi02 = parseInt(document.querySelector('#masking').textContent)
 	  console.log(dumi)
 	  var data = google.visualization.arrayToDataTable([
 	  ['Type', 'Hours per Day'],
-	  ['masking', dumi01],
+	  ['masking', dumi02],
 	  ['non masking', dumi01],
 	  ['balance', dumi]
 	]);
