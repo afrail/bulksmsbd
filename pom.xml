@@ -11,7 +11,7 @@
 	</parent>
 
 
-	<groupId>com.bulksmsbd</groupId>
+	<groupId>com.shopnobazz.bulksmsbd</groupId>
 	<artifactId>bulksmsbd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blooddonate</name>

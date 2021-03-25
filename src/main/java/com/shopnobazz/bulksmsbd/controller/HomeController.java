@@ -53,10 +53,7 @@ public class HomeController {
     private WalletService walletService; 
 
     
-    @RequestMapping(value="/main",method = RequestMethod.GET)
-	  public String home() {
-		  return "home";
-	  }
+
     
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public ModelAndView displayRegistration(ModelAndView modelAndView, User user)

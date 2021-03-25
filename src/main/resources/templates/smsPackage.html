@@ -70,6 +70,12 @@
 					</div>
 				</div>
 			</form>
+			<div class="nav-item d-none d-sm-inline-block" style="position: absolute; right: 5px;padding: 10px;">
+        
+        <div class="mx-r">
+        <a class="text-light " th:href="@{/logout}">Logout</a>         
+        </div>
+      </div>
 		</nav>
 
 		<!-- Main Sidebar Container -->
@@ -102,12 +108,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a th:href="@{/}" class="nav-link active">
-              <i style="color: white" class="nav-icon fas fa-tachometer-alt"></i>
-              <p class="sideText">
+          <li class="nav-item">
+            <a th:href="@{/}" class="nav-link sideText text-dark">
+              <i style="color: purple" class="nav-icon fas fa-tachometer-alt"></i>
+              <p >
                 Dashboard
-                <i class="right"></i>
+             
               </p>
             </a>
           </li>
@@ -232,7 +238,7 @@
 								<td style="padding-top: 20px;"><label for="validationDate">Validation
 										Period</label> <input th:value="*{validationDate}"
 									style="width: 130px; border-radius: 10px; font-style: italic; font-weight: 800;"
-									type="number" name="validationDate" min="7" , max="30"></input>
+									type="number" name="validationDate" min="7" , max="90"></input>
 								</td>
 							</tr>
 							<tr>
